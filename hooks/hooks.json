@@ -1,0 +1,41 @@
+{
+  "description": "Nushell development hooks for validation and auto-formatting",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if this file operation targets a .nu file. If so, validate the Nushell code being written:\n\n1. Check syntax is valid Nushell\n2. Verify type annotations are present on exports\n3. Look for common errors (undefined variables, type mismatches)\n4. Check for deprecated patterns\n\nIf issues found, return 'deny' with specific error messages and fixes. If valid, return 'approve'.\n\nFile: $TOOL_INPUT",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/post-write-check.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/session-init.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "nushell-dev",
+  "version": "1.0.0",
+  "description": "Comprehensive development toolkit for architecting robust, well-documented Nushell scripts, commands, modules, overlays, and pipelines. Integrates with nu --lsp, nu --mcp, and nu-lint for professional Nushell development.",
+  "author": {
+    "name": "Daniel Bodnar",
+    "email": "daniel.bodnar@gmail.com",
+    "url": "https://github.com/danielbodnar"
+  },
+  "homepage": "https://github.com/danielbodnar/nushell-dev",
+  "repository": "https://github.com/danielbodnar/nushell-dev",
+  "license": "MIT",
+  "keywords": [
+    "nushell",
+    "shell",
+    "scripting",
+    "development",
+    "data-processing",
+    "polars",
+    "dataframes",
+    "cloudflare",
+    "lsp",
+    "mcp",
+    "linting",
+    "code-generation"
+  ]
+}

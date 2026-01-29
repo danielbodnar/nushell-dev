@@ -1,0 +1,35 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "nushell-marketplace",
+  "metadata": {
+    "description": "Plugins for Nushell development, scripting, data processing, and shell automation",
+    "version": "1.0.0"
+  },
+  "owner": {
+    "name": "Daniel Bodnar",
+    "email": "daniel.bodnar@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "nushell-dev",
+      "description": "Comprehensive development toolkit for architecting robust, well-documented Nushell scripts, commands, modules, overlays, and pipelines. Integrates with nu --lsp, nu --mcp, and nu-lint for professional Nushell development.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Bodnar",
+        "email": "daniel.bodnar@gmail.com"
+      },
+      "source": "./plugins/nushell-dev",
+      "category": "development",
+      "homepage": "https://github.com/danielbodnar/nushell-dev",
+      "keywords": [
+        "nushell",
+        "shell",
+        "scripting",
+        "development",
+        "data-processing",
+        "polars",
+        "cloudflare"
+      ]
+    }
+  ]
+}

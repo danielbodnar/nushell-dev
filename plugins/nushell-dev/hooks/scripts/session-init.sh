@@ -26,11 +26,11 @@ get_nu_version() {
     fi
 }
 
-# Check if nu-check is available (built into nu)
-check_nu_check() {
+# Check if nu syntax validation is available (via nu --commands)
+check_nu_syntax() {
     if command -v nu &> /dev/null; then
-        # nu-check is built-in since v0.60+
-        nu -c "nu-check --help" &>/dev/null && echo "true" || echo "false"
+        # Syntax validation via nu --commands is always available
+        echo "true"
     else
         echo "false"
     fi
@@ -111,7 +111,7 @@ fi
 
 # Detect all tools
 NU_VERSION=$(get_nu_version)
-NU_CHECK_AVAILABLE=$(check_nu_check)
+NU_CHECK_AVAILABLE=$(check_nu_syntax)
 IDE_CHECK_AVAILABLE=$(check_ide_check)
 NU_LINT_AVAILABLE=$(check_nu_lint)
 NUFMT_AVAILABLE=$(check_nufmt)
@@ -136,11 +136,11 @@ build_report() {
         report+="  $RED nu (not installed - required for Nushell development)\n"
     fi
 
-    # nu-check (built-in)
+    # Syntax validation (via nu --commands)
     if [[ "$NU_CHECK_AVAILABLE" == "true" ]]; then
-        report+="  $GREEN nu-check (built-in)\n"
+        report+="  $GREEN syntax validation (nu --commands)\n"
     else
-        report+="  $RED nu-check (not available)\n"
+        report+="  $RED syntax validation (nu not available)\n"
     fi
 
     # nu --ide-check

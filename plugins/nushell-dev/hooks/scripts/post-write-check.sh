@@ -29,11 +29,8 @@ fi
 check_output=""
 check_status=0
 
-# Try nu-check if available
-if command -v nu-check &> /dev/null; then
-    check_output=$(nu-check "$file_path" 2>&1) || check_status=$?
-elif command -v nu &> /dev/null; then
-    # Fallback to nu --commands source
+# Use nu --commands source for syntax validation
+if command -v nu &> /dev/null; then
     check_output=$(nu --commands "source '$file_path'" 2>&1) || check_status=$?
 fi
 

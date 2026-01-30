@@ -19,10 +19,10 @@ Lint Nushell code for errors, warnings, and style issues.
    - If no argument: lint current directory
 
 2. Run syntax validation:
-   !`nu-check $1 2>&1`
+   !`nu --commands "source '$1'" 2>&1`
 
-   For modules, use:
-   !`nu-check --as-module $1 2>&1`
+   Note: Nushell doesn't have a standalone `nu-check` command.
+   Use `nu --commands "source ..."` for syntax validation.
 
 3. If nu-lint is available, run additional checks:
    !`nu-lint check $1 2>&1`

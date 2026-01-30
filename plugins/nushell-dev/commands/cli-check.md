@@ -16,7 +16,7 @@ Audit a Nushell file for CLI guidelines compliance.
 1. Validate the file exists and is a .nu file
 
 2. Run all validation checks:
-   - Syntax: nu-check --debug
+   - Syntax: nu --commands "source file.nu"
    - Lint: nu-lint (if available)
    - Format: nufmt --check (if available)
    - IDE: nu --ide-check

@@ -377,6 +377,7 @@ help str                   # Subcommand category
 
 For detailed patterns and advanced techniques:
 - **`references/patterns.md`** - Idiomatic Nushell patterns
+- **`references/configuration.md`** - Complete `$env.config` reference (from `config nu --doc`)
 - **`references/type-system.md`** - Complete type system reference
 - **`references/module-patterns.md`** - Module organization patterns
 

@@ -21,7 +21,7 @@ export def {{NAME}} [
     input: string          # Input data to process
     --format: string       # Output format (json, csv, text)
     --verbose (-v)         # Enable verbose output
-] -> any {
+] {
     if $verbose {
         print $"Processing: ($input)"
     }
@@ -33,7 +33,7 @@ export def {{NAME}} [
 }
 
 # Internal helper function
-def process-input [input: string, format: string] -> any {
+def process-input [input: string, format: string] {
     match $format {
         "json" => { {input: $input, format: "json"} }
         "csv" => { [[$"input"]; [$input]] }

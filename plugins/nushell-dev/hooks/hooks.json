@@ -3,11 +3,12 @@
   "hooks": {
     "PreToolUse": [
       {
+        "description": "CLI-based pre-write validation using nu-lint and nufmt",
         "matcher": "Write|Edit",
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "Check if this file operation targets a .nu file. If so, validate the Nushell code being written:\n\n1. Check syntax is valid Nushell\n2. Verify type annotations are present on exports\n3. Look for common errors (undefined variables, type mismatches)\n4. Check for deprecated patterns\n\nIf issues found, return 'deny' with specific error messages and fixes. If valid, return 'approve'.\n\nFile: $TOOL_INPUT",
+            "type": "command",
+            "command": "nu ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/pre-write-validate.nu",
             "timeout": 30
           }
         ]
@@ -15,24 +16,26 @@
     ],
     "PostToolUse": [
       {
+        "description": "Comprehensive post-write validation orchestrating syntax, lint, format, and IDE checks",
         "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/post-write-check.sh",
-            "timeout": 10
+            "command": "nu ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/post-write-validate.nu",
+            "timeout": 60
           }
         ]
       }
     ],
     "SessionStart": [
       {
+        "description": "Detect available Nushell validation tools (nu-lint, nufmt, nu --ide-check)",
         "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/session-init.sh",
-            "timeout": 5
+            "command": "nu -c 'let tools = [[tool available]; [nu-lint (which nu-lint | is-not-empty)] [nufmt (which nufmt | is-not-empty)] [nu-ide-check true]]; print \"Nushell validation tools:\"; $tools | to text'",
+            "timeout": 10
           }
         ]
       }

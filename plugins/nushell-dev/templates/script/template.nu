@@ -36,7 +36,7 @@ def main [
 }
 
 # Main work function
-def do-work [--dry-run: bool] {
+def do-work [--dry-run] {
     if $dry_run {
         print "Dry run mode - no changes will be made"
         return null

@@ -30,7 +30,7 @@ export const CONFIG = {
 export def primary-command [
     input: string    # Input to process
     --option: string # Optional parameter
-] -> any {
+] {
     # TODO: Implement primary functionality
     {
         input: $input
@@ -46,13 +46,13 @@ export def primary-command [
 #   {{NAME}} secondary-command data
 export def secondary-command [
     data: any        # Data to process
-] -> any {
+] {
     # TODO: Implement secondary functionality
     $data
 }
 
 # Helper command (internal use)
-def helper [input: any] -> any {
+def helper [input: any] {
     # Internal helper - not exported
     $input
 }
